@@ -1,0 +1,80 @@
+definitions:
+  models.Product:
+    properties:
+      model:
+        type: string
+      name:
+        type: string
+      ownerID:
+        type: integer
+    type: object
+  models.User:
+    properties:
+      lastName:
+        type: string
+      name:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /v1/product:
+    post:
+      consumes:
+      - application/json
+      description: new product creation
+      parameters:
+      - description: product
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.Product'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+      summary: creates product api
+      tags:
+      - Product
+  /v1/users:
+    post:
+      consumes:
+      - application/json
+      description: new user creation
+      parameters:
+      - description: user
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+      summary: creates user api
+      tags:
+      - user
+  /v1/users/{id}:
+    get:
+      consumes:
+      - application/json
+      description: user by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+      summary: getting user by ID
+      tags:
+      - user
+swagger: "2.0"

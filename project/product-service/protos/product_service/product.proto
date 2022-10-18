@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package product;
+
+service ProductService {
+    rpc CreateProduct(Product) returns (Product);
+    rpc GetProduct(GetProductRequest) returns (Product);
+    rpc GetUserProducts(GetUserProductsRequest) returns (Products);
+}
+
+message Empty{}
+
+message Product {
+    int64 id = 1;
+    string name = 2;
+    string model = 3;
+    int64 owner_id = 4;
+}
+
+message GetProductRequest {
+    int64 id = 1;
+}
+
+message GetUserProductsRequest {
+    int64 owner_id = 1;
+}
+
+message Products {
+    repeated Product products = 1;
+    int64 count = 2;
+}
