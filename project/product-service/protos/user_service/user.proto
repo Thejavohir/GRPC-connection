@@ -5,15 +5,26 @@ package user;
 service UserService {
     rpc Create(User) returns (User);
     rpc GetUser(GetUserRequest) returns (User);
-    rpc Update(User) returns (UpdateUserResponse);
+    rpc UpdateUser(User) returns (User);
+    rpc CheckField(CheckFieldRequest) returns (CheckFieldResponse);
+}
+
+message CheckFieldRequest {
+    string field = 1;
+    string value = 2;
+}
+
+message CheckFieldResponse {
+    bool exists = 1;
 }
 
 message User {
     int64 id = 1;
     string name = 2;
     string lastname = 3;
-    repeated Product products = 4;
-    int64 products_count = 5;
+    string email = 4;
+    string username = 5;
+    string password = 6;
 }
 
 message Product {
@@ -21,10 +32,6 @@ message Product {
     string name = 2;
     string model = 3;
     int64 owner_id = 4;
-}
-
-message UpdateUserResponse {
-    int64 id = 1;
 }
 
 message GetUserRequest {

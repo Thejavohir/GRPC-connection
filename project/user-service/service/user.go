@@ -3,7 +3,6 @@ package service
 import (
 	"context"
 
-	pbp "github.com/project/user-service/genproto/product_service"
 	pb "github.com/project/user-service/genproto/user_service"
 	l "github.com/project/user-service/pkg/logger"
 	grpcClient "github.com/project/user-service/service/grpc_client"
@@ -43,34 +42,27 @@ func (s *UserService) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.
 		s.logger.Error("error getting user", l.Any("error getting user", err))
 		return &pb.User{}, status.Error(codes.Internal, "internal error")
 	}
+	return user, nil
+}
 
-	products, err := s.client.Product().GetUserProducts(ctx, &pbp.GetUserProductsRequest{
-		OwnerId: req.Id,
-	})
+func (s *UserService) UpdateUser(ctx context.Context, req *pb.User) (*pb.User, error) {
+	user, err := s.storage.User().UpdateUser(req)
 	if err != nil {
 		s.logger.Error("error getting user products", l.Any("error getting user products", err))
 		return &pb.User{}, status.Error(codes.Internal, "internal error")
 	}
-	for _, p := range products.Products {
-		user.Products = append(user.Products, &pb.Product{
-			Id:      p.Id,
-			Name:    p.Name,
-			Model:   p.Model,
-			OwnerId: p.OwnerId,
-		})
-	}
-	user.ProductsCount = products.Count
-
-	return user, nil
+	return &pb.User{
+		Id: user.Id,
+	}, nil
 }
 
-func (s *UserService) Update(ctx context.Context, req *pb.User) (*pb.UpdateUserResponse, error) {
-	user, err := s.storage.User().Update(req)
+func (s *UserService) CheckField(ctx context.Context, req *pb.CheckFieldRequest) (*pb.CheckFieldResponse, error) {
+	boolean, err := s.storage.User().CheckField(req.Field, req.Value)
 	if err != nil {
-		s.logger.Error("error getting user products", l.Any("error getting user products", err))
-		return &pb.UpdateUserResponse{}, status.Error(codes.Internal, "internal error")
+		s.logger.Error("error checkfield user", l.Any("error checking field", err))
+		return &pb.CheckFieldResponse{}, status.Error(codes.Internal, "internal error")
 	}
-	return &pb.UpdateUserResponse{
-		Id: user.Id,
+	return &pb.CheckFieldResponse{
+		Exists: boolean.Exists,
 	}, nil
 }

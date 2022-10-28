@@ -1,4 +1,21 @@
 definitions:
+  models.Error:
+    properties:
+      description:
+        type: string
+      error: {}
+    type: object
+  models.ListProducts:
+    properties:
+      id:
+        type: integer
+      model:
+        type: string
+      name:
+        type: string
+      ownerID:
+        type: integer
+    type: object
   models.Product:
     properties:
       model:
@@ -7,6 +24,21 @@ definitions:
         type: string
       ownerID:
         type: integer
+    type: object
+  models.RegisterUserModel:
+    properties:
+      code:
+        type: string
+      email:
+        type: string
+      lastName:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      userame:
+        type: string
     type: object
   models.User:
     properties:
@@ -38,6 +70,92 @@ paths:
       summary: creates product api
       tags:
       - Product
+  /v1/product/{id}:
+    get:
+      consumes:
+      - application/json
+      description: product by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+      summary: getting product by ID
+      tags:
+      - Product
+  /v1/products/{id}:
+    get:
+      consumes:
+      - application/json
+      description: user products by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+      summary: getting user products by ID
+      tags:
+      - Product
+  /v1/products/all:
+    get:
+      consumes:
+      - application/json
+      description: all products
+      parameters:
+      - description: query params
+        in: query
+        name: page
+        type: string
+      - description: query params
+        in: query
+        name: limit
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ListProducts'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: getting all products
+      tags:
+      - Product
+  /v1/register:
+    post:
+      consumes:
+      - application/json
+      description: register api
+      parameters:
+      - description: register
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.RegisterUserModel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success
+      summary: registre user api
+      tags:
+      - Auth
   /v1/users:
     post:
       consumes:
@@ -57,7 +175,7 @@ paths:
           description: success
       summary: creates user api
       tags:
-      - user
+      - User
   /v1/users/{id}:
     get:
       consumes:
@@ -76,5 +194,5 @@ paths:
           description: success
       summary: getting user by ID
       tags:
-      - user
+      - User
 swagger: "2.0"

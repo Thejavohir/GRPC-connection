@@ -26,6 +26,108 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type LPreq struct {
+	Page                 int64    `protobuf:"varint,1,opt,name=page,proto3" json:"page"`
+	Limit                int64    `protobuf:"varint,2,opt,name=limit,proto3" json:"limit"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *LPreq) Reset()         { *m = LPreq{} }
+func (m *LPreq) String() string { return proto.CompactTextString(m) }
+func (*LPreq) ProtoMessage()    {}
+func (*LPreq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f206bf86cd50b14c, []int{0}
+}
+func (m *LPreq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *LPreq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_LPreq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *LPreq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LPreq.Merge(m, src)
+}
+func (m *LPreq) XXX_Size() int {
+	return m.Size()
+}
+func (m *LPreq) XXX_DiscardUnknown() {
+	xxx_messageInfo_LPreq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_LPreq proto.InternalMessageInfo
+
+func (m *LPreq) GetPage() int64 {
+	if m != nil {
+		return m.Page
+	}
+	return 0
+}
+
+func (m *LPreq) GetLimit() int64 {
+	if m != nil {
+		return m.Limit
+	}
+	return 0
+}
+
+type LPresp struct {
+	Products             []*Product `protobuf:"bytes,1,rep,name=products,proto3" json:"products"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *LPresp) Reset()         { *m = LPresp{} }
+func (m *LPresp) String() string { return proto.CompactTextString(m) }
+func (*LPresp) ProtoMessage()    {}
+func (*LPresp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f206bf86cd50b14c, []int{1}
+}
+func (m *LPresp) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *LPresp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_LPresp.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *LPresp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LPresp.Merge(m, src)
+}
+func (m *LPresp) XXX_Size() int {
+	return m.Size()
+}
+func (m *LPresp) XXX_DiscardUnknown() {
+	xxx_messageInfo_LPresp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_LPresp proto.InternalMessageInfo
+
+func (m *LPresp) GetProducts() []*Product {
+	if m != nil {
+		return m.Products
+	}
+	return nil
+}
+
 type Empty struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -36,7 +138,7 @@ func (m *Empty) Reset()         { *m = Empty{} }
 func (m *Empty) String() string { return proto.CompactTextString(m) }
 func (*Empty) ProtoMessage()    {}
 func (*Empty) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f206bf86cd50b14c, []int{0}
+	return fileDescriptor_f206bf86cd50b14c, []int{2}
 }
 func (m *Empty) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -79,7 +181,7 @@ func (m *Product) Reset()         { *m = Product{} }
 func (m *Product) String() string { return proto.CompactTextString(m) }
 func (*Product) ProtoMessage()    {}
 func (*Product) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f206bf86cd50b14c, []int{1}
+	return fileDescriptor_f206bf86cd50b14c, []int{3}
 }
 func (m *Product) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -147,7 +249,7 @@ func (m *GetProductRequest) Reset()         { *m = GetProductRequest{} }
 func (m *GetProductRequest) String() string { return proto.CompactTextString(m) }
 func (*GetProductRequest) ProtoMessage()    {}
 func (*GetProductRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f206bf86cd50b14c, []int{2}
+	return fileDescriptor_f206bf86cd50b14c, []int{4}
 }
 func (m *GetProductRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -194,7 +296,7 @@ func (m *GetUserProductsRequest) Reset()         { *m = GetUserProductsRequest{}
 func (m *GetUserProductsRequest) String() string { return proto.CompactTextString(m) }
 func (*GetUserProductsRequest) ProtoMessage()    {}
 func (*GetUserProductsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f206bf86cd50b14c, []int{3}
+	return fileDescriptor_f206bf86cd50b14c, []int{5}
 }
 func (m *GetUserProductsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -242,7 +344,7 @@ func (m *Products) Reset()         { *m = Products{} }
 func (m *Products) String() string { return proto.CompactTextString(m) }
 func (*Products) ProtoMessage()    {}
 func (*Products) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f206bf86cd50b14c, []int{4}
+	return fileDescriptor_f206bf86cd50b14c, []int{6}
 }
 func (m *Products) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -286,6 +388,8 @@ func (m *Products) GetCount() int64 {
 }
 
 func init() {
+	proto.RegisterType((*LPreq)(nil), "product.LPreq")
+	proto.RegisterType((*LPresp)(nil), "product.LPresp")
 	proto.RegisterType((*Empty)(nil), "product.Empty")
 	proto.RegisterType((*Product)(nil), "product.Product")
 	proto.RegisterType((*GetProductRequest)(nil), "product.GetProductRequest")
@@ -296,26 +400,30 @@ func init() {
 func init() { proto.RegisterFile("product_service/product.proto", fileDescriptor_f206bf86cd50b14c) }
 
 var fileDescriptor_f206bf86cd50b14c = []byte{
-	// 301 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x51, 0xc1, 0x4a, 0xf3, 0x40,
-	0x18, 0xfc, 0xb7, 0x69, 0xff, 0xd4, 0x4f, 0xac, 0xed, 0x22, 0x12, 0x03, 0xc6, 0x10, 0x2f, 0x39,
-	0x48, 0x85, 0xe6, 0xe6, 0x51, 0x29, 0xc5, 0x8b, 0x48, 0xc4, 0xab, 0xa5, 0x66, 0xbf, 0x43, 0xc0,
-	0x64, 0xe3, 0xee, 0x46, 0xf1, 0x4d, 0x7c, 0xa4, 0x1e, 0x7d, 0x04, 0x89, 0x2f, 0x22, 0x6e, 0x36,
-	0xb5, 0x36, 0xbd, 0x65, 0x26, 0xf3, 0xcd, 0x30, 0xb3, 0x70, 0x5c, 0x08, 0xce, 0xca, 0x44, 0xcd,
-	0x25, 0x8a, 0x97, 0x34, 0xc1, 0x73, 0x83, 0xc7, 0x85, 0xe0, 0x8a, 0x53, 0xdb, 0xc0, 0xc0, 0x86,
-	0xde, 0x34, 0x2b, 0xd4, 0x5b, 0xf0, 0x00, 0xf6, 0x6d, 0xcd, 0xd1, 0x01, 0x74, 0x52, 0xe6, 0x10,
-	0x9f, 0x84, 0x56, 0xdc, 0x49, 0x19, 0xa5, 0xd0, 0xcd, 0x17, 0x19, 0x3a, 0x1d, 0x9f, 0x84, 0x3b,
-	0xb1, 0xfe, 0xa6, 0x07, 0xd0, 0xcb, 0x38, 0xc3, 0x27, 0xc7, 0xd2, 0x64, 0x0d, 0xe8, 0x11, 0xf4,
-	0xf9, 0x6b, 0x8e, 0x62, 0x9e, 0x32, 0xa7, 0xab, 0xef, 0x6d, 0x8d, 0xaf, 0x59, 0x70, 0x0a, 0xa3,
-	0x19, 0x2a, 0x13, 0x11, 0xe3, 0x73, 0x89, 0xb2, 0x95, 0x14, 0x44, 0x70, 0x38, 0x43, 0x75, 0x2f,
-	0x51, 0x18, 0xa1, 0x6c, 0x94, 0xeb, 0xce, 0xe4, 0xaf, 0xf3, 0x0d, 0xf4, 0x1b, 0x35, 0x3d, 0x83,
-	0xbe, 0x69, 0x26, 0x1d, 0xe2, 0x5b, 0xe1, 0xee, 0x64, 0x38, 0x6e, 0x9a, 0x37, 0xd9, 0x2b, 0xc5,
-	0x4f, 0x89, 0x84, 0x97, 0xb9, 0xd2, 0xcd, 0xac, 0xb8, 0x06, 0x93, 0x25, 0x81, 0x81, 0xd1, 0xde,
-	0xd5, 0xe3, 0xd1, 0x08, 0xf6, 0xae, 0x04, 0x2e, 0x14, 0x36, 0x13, 0xb5, 0x5c, 0xdd, 0x16, 0x43,
-	0x2f, 0x00, 0x7e, 0x1b, 0x53, 0x77, 0xf5, 0xbf, 0x35, 0xc3, 0x96, 0xdb, 0x29, 0xec, 0x6f, 0x0c,
-	0x41, 0x4f, 0xd6, 0x0d, 0xb6, 0x4c, 0xe4, 0x8e, 0x36, 0x5d, 0xe4, 0xe5, 0x70, 0x59, 0x79, 0xe4,
-	0xa3, 0xf2, 0xc8, 0x67, 0xe5, 0x91, 0xf7, 0x2f, 0xef, 0xdf, 0xe3, 0x7f, 0xfd, 0xfe, 0xd1, 0x77,
-	0x00, 0x00, 0x00, 0xff, 0xff, 0xa4, 0xb7, 0x2b, 0x92, 0x20, 0x02, 0x00, 0x00,
+	// 354 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x52, 0x4d, 0x4b, 0xc3, 0x40,
+	0x10, 0x75, 0xfb, 0x95, 0x3a, 0x6a, 0x3f, 0x16, 0x91, 0x18, 0x30, 0x96, 0x78, 0xe9, 0x41, 0x5a,
+	0x6c, 0xc1, 0x83, 0x47, 0xa5, 0x14, 0xa1, 0x48, 0xa9, 0x78, 0xb5, 0xd4, 0x66, 0x90, 0x85, 0xa6,
+	0x49, 0x77, 0xb7, 0x8a, 0xff, 0xc4, 0x9f, 0xe4, 0xd1, 0x9f, 0x20, 0xf1, 0x57, 0x78, 0x93, 0x6c,
+	0x36, 0xb1, 0x6d, 0x7a, 0xf1, 0x94, 0x7d, 0xb3, 0x6f, 0xde, 0x9b, 0x79, 0x59, 0x38, 0x09, 0xb8,
+	0xef, 0x2e, 0xa7, 0x72, 0x2c, 0x90, 0xbf, 0xb0, 0x29, 0xb6, 0x35, 0x6e, 0x05, 0xdc, 0x97, 0x3e,
+	0x35, 0x34, 0x74, 0x2e, 0xa0, 0x38, 0x18, 0x72, 0x5c, 0x50, 0x0a, 0x85, 0x60, 0xf2, 0x8c, 0x26,
+	0x69, 0x90, 0x66, 0x7e, 0xa4, 0xce, 0xf4, 0x10, 0x8a, 0x33, 0xe6, 0x31, 0x69, 0xe6, 0x54, 0x31,
+	0x06, 0xce, 0x25, 0x94, 0xa2, 0x16, 0x11, 0xd0, 0x73, 0x28, 0x6b, 0x1d, 0x61, 0x92, 0x46, 0xbe,
+	0xb9, 0xd7, 0xa9, 0xb5, 0x12, 0x9f, 0x61, 0xfc, 0x1d, 0xa5, 0x0c, 0xc7, 0x80, 0x62, 0xcf, 0x0b,
+	0xe4, 0x9b, 0xf3, 0x08, 0x86, 0xbe, 0xa5, 0x15, 0xc8, 0x31, 0x57, 0x7b, 0xe6, 0x98, 0x1b, 0x4d,
+	0x31, 0x9f, 0x78, 0xa8, 0x0c, 0x77, 0x47, 0xea, 0x1c, 0x4d, 0xe1, 0xf9, 0x2e, 0xce, 0xcc, 0xbc,
+	0x2a, 0xc6, 0x80, 0x1e, 0x43, 0xd9, 0x7f, 0x9d, 0x23, 0x1f, 0x33, 0xd7, 0x2c, 0xa8, 0x7e, 0x43,
+	0xe1, 0x5b, 0xd7, 0x39, 0x83, 0x7a, 0x1f, 0x65, 0x32, 0x00, 0x2e, 0x96, 0x28, 0x32, 0x4e, 0x4e,
+	0x17, 0x8e, 0xfa, 0x28, 0x1f, 0x04, 0x72, 0x4d, 0x14, 0x09, 0x73, 0x55, 0x99, 0xac, 0x2b, 0xdf,
+	0x41, 0x39, 0x61, 0xff, 0x6f, 0xf9, 0x68, 0x89, 0xa9, 0xbf, 0x9c, 0xa7, 0x51, 0x2a, 0xd0, 0xf9,
+	0x21, 0x50, 0xd1, 0xdc, 0xfb, 0xf8, 0x3f, 0xd1, 0x2e, 0x1c, 0xdc, 0x70, 0x9c, 0x48, 0x4c, 0x22,
+	0xca, 0xa8, 0x5a, 0x99, 0x0a, 0xbd, 0x02, 0xf8, 0xdb, 0x98, 0x5a, 0xe9, 0x7d, 0x26, 0x86, 0x2d,
+	0xbd, 0x3d, 0xa8, 0x6e, 0x04, 0x41, 0x4f, 0x57, 0x05, 0xb6, 0x44, 0x64, 0xd5, 0x37, 0x55, 0x04,
+	0x6d, 0xc3, 0xfe, 0x80, 0x09, 0x99, 0xe2, 0x4a, 0x4a, 0x51, 0xef, 0xcb, 0xaa, 0xae, 0x61, 0x11,
+	0x5c, 0xd7, 0x3e, 0x42, 0x9b, 0x7c, 0x86, 0x36, 0xf9, 0x0a, 0x6d, 0xf2, 0xfe, 0x6d, 0xef, 0x3c,
+	0x95, 0xd4, 0xdb, 0xec, 0xfe, 0x06, 0x00, 0x00, 0xff, 0xff, 0xd9, 0xb8, 0xc5, 0x26, 0xbc, 0x02,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -333,6 +441,7 @@ type ProductServiceClient interface {
 	CreateProduct(ctx context.Context, in *Product, opts ...grpc.CallOption) (*Product, error)
 	GetProduct(ctx context.Context, in *GetProductRequest, opts ...grpc.CallOption) (*Product, error)
 	GetUserProducts(ctx context.Context, in *GetUserProductsRequest, opts ...grpc.CallOption) (*Products, error)
+	ListProducts(ctx context.Context, in *LPreq, opts ...grpc.CallOption) (*LPresp, error)
 }
 
 type productServiceClient struct {
@@ -370,11 +479,21 @@ func (c *productServiceClient) GetUserProducts(ctx context.Context, in *GetUserP
 	return out, nil
 }
 
+func (c *productServiceClient) ListProducts(ctx context.Context, in *LPreq, opts ...grpc.CallOption) (*LPresp, error) {
+	out := new(LPresp)
+	err := c.cc.Invoke(ctx, "/product.ProductService/ListProducts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProductServiceServer is the server API for ProductService service.
 type ProductServiceServer interface {
 	CreateProduct(context.Context, *Product) (*Product, error)
 	GetProduct(context.Context, *GetProductRequest) (*Product, error)
 	GetUserProducts(context.Context, *GetUserProductsRequest) (*Products, error)
+	ListProducts(context.Context, *LPreq) (*LPresp, error)
 }
 
 // UnimplementedProductServiceServer can be embedded to have forward compatible implementations.
@@ -389,6 +508,9 @@ func (*UnimplementedProductServiceServer) GetProduct(ctx context.Context, req *G
 }
 func (*UnimplementedProductServiceServer) GetUserProducts(ctx context.Context, req *GetUserProductsRequest) (*Products, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserProducts not implemented")
+}
+func (*UnimplementedProductServiceServer) ListProducts(ctx context.Context, req *LPreq) (*LPresp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListProducts not implemented")
 }
 
 func RegisterProductServiceServer(s *grpc.Server, srv ProductServiceServer) {
@@ -449,6 +571,24 @@ func _ProductService_GetUserProducts_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProductService_ListProducts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LPreq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProductServiceServer).ListProducts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/product.ProductService/ListProducts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProductServiceServer).ListProducts(ctx, req.(*LPreq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _ProductService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "product.ProductService",
 	HandlerType: (*ProductServiceServer)(nil),
@@ -465,9 +605,91 @@ var _ProductService_serviceDesc = grpc.ServiceDesc{
 			MethodName: "GetUserProducts",
 			Handler:    _ProductService_GetUserProducts_Handler,
 		},
+		{
+			MethodName: "ListProducts",
+			Handler:    _ProductService_ListProducts_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "product_service/product.proto",
+}
+
+func (m *LPreq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *LPreq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *LPreq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if m.Limit != 0 {
+		i = encodeVarintProduct(dAtA, i, uint64(m.Limit))
+		i--
+		dAtA[i] = 0x10
+	}
+	if m.Page != 0 {
+		i = encodeVarintProduct(dAtA, i, uint64(m.Page))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *LPresp) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *LPresp) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *LPresp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.Products) > 0 {
+		for iNdEx := len(m.Products) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Products[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintProduct(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *Empty) Marshal() (dAtA []byte, err error) {
@@ -669,6 +891,42 @@ func encodeVarintProduct(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
+func (m *LPreq) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Page != 0 {
+		n += 1 + sovProduct(uint64(m.Page))
+	}
+	if m.Limit != 0 {
+		n += 1 + sovProduct(uint64(m.Limit))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *LPresp) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Products) > 0 {
+		for _, e := range m.Products {
+			l = e.Size()
+			n += 1 + l + sovProduct(uint64(l))
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
 func (m *Empty) Size() (n int) {
 	if m == nil {
 		return 0
@@ -763,6 +1021,180 @@ func sovProduct(x uint64) (n int) {
 }
 func sozProduct(x uint64) (n int) {
 	return sovProduct(uint64((x << 1) ^ uint64((int64(x) >> 63))))
+}
+func (m *LPreq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowProduct
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: LPreq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: LPreq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Page", wireType)
+			}
+			m.Page = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowProduct
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Page |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Limit", wireType)
+			}
+			m.Limit = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowProduct
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Limit |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipProduct(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthProduct
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *LPresp) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowProduct
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: LPresp: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: LPresp: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Products", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowProduct
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthProduct
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthProduct
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Products = append(m.Products, &Product{})
+			if err := m.Products[len(m.Products)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipProduct(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthProduct
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
 }
 func (m *Empty) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)

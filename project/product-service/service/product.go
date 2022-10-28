@@ -49,3 +49,12 @@ func (s *ProductService) GetUserProducts(ctx context.Context, req *pb.GetUserPro
 	}
 	return products, nil
 }
+
+func (s *ProductService) ListProducts(ctx context.Context, req *pb.LPreq) (*pb.LPresp, error) {
+	products, err := s.storage.Product().ListProducts(req.Page, req.Limit)
+	if err != nil {
+		s.logger.Error("error getting user products", l.Any("error getting user products", err))
+		return &pb.LPresp{}, status.Error(codes.Internal, "internal error")
+	}
+	return products, nil
+}

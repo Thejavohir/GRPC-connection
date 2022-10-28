@@ -15,7 +15,7 @@ type GrpcClientI interface {
 
 // GrpcClient ...
 type GrpcClient struct {
-	cfg            config.Config
+	cfg             config.Config
 	productService pbp.ProductServiceClient
 }
 

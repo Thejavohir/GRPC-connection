@@ -90,3 +90,33 @@ func (r *productRepo) GetUserProducts(ownerID int64) (*pb.Products, error) {
 	}
 	return products, nil
 }
+
+func (r *productRepo) ListProducts(page, limit int64) (*pb.LPresp, error) {
+	offset := (page - 1) * limit
+	rows, err := r.db.Query(`select
+	id,
+	name,
+	model,
+	owner_id from products limit $1 offset $2`, limit, offset)
+	if err != nil {
+		return &pb.LPresp{}, err
+	}
+	defer rows.Close()
+
+	products := &pb.LPresp{}
+
+	for rows.Next() {
+		product := &pb.Product{}
+		err := rows.Scan(
+			&product.Id,
+			&product.Name,
+			&product.Model,
+			&product.OwnerId,
+		)
+		if err != nil {
+			return &pb.LPresp{}, err
+		}
+		products.Products = append(products.Products, product)
+	}
+	return products, nil
+}
